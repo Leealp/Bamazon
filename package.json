@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Leealp/Bamazon/issues"
   },
-  "homepage": "https://github.com/Leealp/Bamazon#readme"
+  "homepage": "https://github.com/Leealp/Bamazon#readme",
+  "dependencies": {
+    "console.table": "^0.10.0"
+  }
 }
