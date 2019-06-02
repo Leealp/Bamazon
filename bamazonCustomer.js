@@ -16,67 +16,71 @@ var connection = mysql.createConnection({
   database: "bamazon"
 });
 
-connection.connect(function(err){
+connection.connect(function(err,answer){
 	if (err) throw err;
-	console.log("connected");
+  console.log("connected");
 
-	bamazonSearch()
-})
+	});	
 
 
-function bamazonSearch() {
-  inquirer
-    .prompt({
-      name: "first",
-      type: "list",
-      message: "Hi! Welcome to bamazon shoping. Your all you can do online shopsmart?\n Below is the list of all we have in stock\n please tell me the ID of the product you would like to buy",
-      choices: [
-        "1 diaper for $35",
-        "2 painting for $99",
-        "3 mower for $299",
-        "4 tire for $89",
-        "5 pant for $49",
-        "6 skirt for $29",
-        "exit"
-      ]
-    })
-    .then(function(answer){
-    	switch(answer.first){
-    		case "1 diaper for $35":
-    		case "2 painting for $99":
-    		case "3 mower for $299":
-    		case "4 tire for $89":
-    		case "5 pant for $49":
-    		case "6 skirt for $29":
-    		quantity();
-    		break;
+// function bamazonSearch() {
+//   inquirer
+//     .prompt({
+//       name: "first",
+//       type: "list",
+//       message: "Hi! Welcome to bamazon shoping. Your all you can do online shopsmart?\n Below is the list of all we have in stock\n please tell me the ID of the product you would like to buy",
+//       choices: [
+//         "1 diaper for $35",
+//         "2 painting for $99",
+//         "3 mower for $299",
+//         "4 tire for $89",
+//         "5 pant for $49",
+//         "6 skirt for $29",
+//         "exit\n" 
+//       ]
+//     })
+//     .then(function(answer){
+//     	switch(answer.first){
+//     		case "1 diaper for $35":
+//     		case "2 painting for $99":
+//     		case "3 mower for $299":
+//     		case "4 tire for $89":
+//     		case "5 pant for $49":
+//     		case "6 skirt for $29":
+//     		quantity();
+//     		break;
 
-    		 case "exit":
-        	connection.end();
-       		break;
-    	}
+//     		 case "exit":
+//         	connection.end();
+//        		break;
+//     	}
     	
-    });
+//     });
     
-}
+// }
 
-function quantity(){
-  inquirer
-  	.prompt({
-  		name: "second",
-  		type: "input",
-  		message:"how many would you like to buy?",
-  		
-
-  	})
-  	.then(function(answer){
+// function quantity(){
+//   inquirer
+//   	.prompt({
+//   		name: "second",
+//   		type: "input",
+//   		message:"how many would you like to buy?",
 
 
+//   	})
+//   	.then(function(answer){
+//   		var query = "SELECT stock_quantity FROM bamazon WHERE = answer.first";
+//   		connection.query(query, { second: answer.second }, function(err, res) {
+//   			console.log(answer);
+//   			// if(answer.second > )
+//   		});
 
 
-  	})
 
-}
+
+//   	});
+
+// }
 
 
 
