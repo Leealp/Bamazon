@@ -84,4 +84,35 @@ function productId() {
         var remaining_quantity = current_quantity - answer.quant;
         console.log("Remaining quantity in stock: " , remaining_quantity);
 
-      
+        if(current_quantity > answer.quant) {
+
+          console.log("Amount Remaining: " + remaining_quantity);
+          console.log("Total Cost: " + (answer.quant * price) + "\n");
+
+          connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?",
+                    [
+                    remaining_quantity, answer.id
+                    ],
+
+          
+            function(err, res){
+              console.table(res);
+            });
+
+          connection.query("SELECT * FROM products", function(err, res) {
+
+            console.log("This is the updated inventory of product items: ");
+            console.log("------------------------------- \n");
+            console.table(res);
+          });
+
+        } else {
+          console.log("Insufficient amounts, please edit your units!");
+        }
+
+      connection.end();
+
+      });
+    })
+
+}
