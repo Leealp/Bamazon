@@ -37,7 +37,33 @@ function toConsoleTable() {
 toConsoleTable();
 
 
+function productId() {
 
+  inquirer.prompt([
+
+    {
+     type: "input",
+     name: "id",
+     message: "Please enter the Item ID of the product you would like to buy.\n",
+     validate: function(value) {
+      if (!isNaN(value) && value < 11) {
+        return true;
+      }
+      return false;
+     }
+    },
+
+    {
+     type: "input",
+     name: "quant",
+     message: "How many units of the product would you like to buy? \n",
+     validate: function(value) {
+      if (!isNaN(value)) {
+        return true;
+      }
+      return false;
+      }
+    }
 
 
 
