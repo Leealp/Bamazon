@@ -24,7 +24,7 @@ connection.connect(function(err,response){
 
 function toConsoleTable() {
   connection.connect(function(err) {
-    if (err) throw err
+    // if (err) throw err
 
     connection.query("SELECT * FROM products", function(err, res) {
     if (err) throw err
@@ -65,61 +65,23 @@ function productId() {
       }
     }
 
+    ]).then(function(answer) {
 
+      var userId = answer.id;
+      console.log("Chosen item id: " , userId);
 
+      var userQuant = answer.quant;
+      console.log("Chosen quantity from stock: " , userQuant , "\n");
 
+      connection.query("SELECT * FROM products WHERE ?", [{ item_id : answer.id }], function(err, res) {
+        if (err) throw err;
+        
+        
+        console.table(res);
+        var current_quantity = res[0].stock_quantity;
+        console.log("Current quantity in stock: " , current_quantity);
+        var price = res[0].price;
+        var remaining_quantity = current_quantity - answer.quant;
+        console.log("Remaining quantity in stock: " , remaining_quantity);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
